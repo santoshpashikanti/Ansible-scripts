@@ -1,4 +1,5 @@
-- name: Launching an EC2 Instance
+- name: ec2
+  hosts: all
   local_action: ec2
   instance_type={{t2.small}}
   image={{ami-07355e1e938a6b6cb}}
