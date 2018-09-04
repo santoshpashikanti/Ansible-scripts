@@ -1,6 +1,6 @@
-- name: ec2
-  hosts: all
+- name: santosh
   local_action: ec2
+  become: no
   instance_type={{t2.small}}
   image={{ami-07355e1e938a6b6cb}}
   region={{us-east-1}}
