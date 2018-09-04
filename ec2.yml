@@ -1,13 +1,15 @@
+--- 
+- 
 - name: santosh
   local_action: ec2
   become: no
-  instance_type={{t2.small}}
-  image={{ami-07355e1e938a6b6cb}}
-  region={{us-east-1}}
-  keypair={{santosh}}
-  count={{1}}
-  instance_profile_name={{Vihaan}}
-  group={{sg-6000e21f}}
-  wait=true
-  volumes={{30}}
+  instance_type: {{t2.small}}
+  image: {{ami-07355e1e938a6b6cb}}
+  region: {{us-east-1}}
+  keypair: {{santosh}}
+  count: {{1}}
+  instance_profile_name: {{Vihaan}}
+  group: {{sg-6000e21f}}
+  wait: true
+  volumes: {{30}}
   register: ec2
