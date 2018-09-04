@@ -1,6 +1,7 @@
 --- 
 - 
 - name: santosh
+  hosts: all
   local_action: ec2
   become: no
   instance_type: {{t2.small}}
