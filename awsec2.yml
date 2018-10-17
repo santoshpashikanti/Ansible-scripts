@@ -1,7 +1,9 @@
-- name: create VPC
-  ec2_vpc_net:
-    name: "{{ Santosh }}"
-    cidr_block: "{{ 10.145.0.0/16 }}"
-    region: "{{ us-east-1 }}"
-    state: present
-  register: vpc
+#
+#About: This will create s3 bucket
+#
+---
+- hosts: localhost
+  connection: local
+  gather_facts: True
+  roles:
+  - create-s3-bucket
