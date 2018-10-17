@@ -2,8 +2,7 @@
   connection: local
   gather_facts: false
   user: root
-  pre_tasks:
-    - include_vars: variables.yml
+  
   tasks:
     - name: Provision {{ 1 }} instances with tag {{ Santosh }}
       local_action:
