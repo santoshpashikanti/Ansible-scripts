@@ -1,16 +1,28 @@
---- 
-- 
-- name: santosh
-  hosts: all
-  local_action: ec2
-  become: no
-  instance_type: {{t2.small}}
-  image: {{ami-01945499792201081}}
-  region: {{us-east-1}}
-  keypair: {{awx}}
-  count: {{1}}
-  instance_profile_name: {{Vihaan}}
-  group: {{	sg-08ba838d51dcadfc9}}
-  wait: true
-  volumes: {{30}}
-  register: ec2
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  user: root
+  pre_tasks:
+    - include_vars: variables.yml
+  tasks:
+    - name: Provision {{ 1 }} instances with tag {{ Santosh }}
+      local_action:
+        module: ec2
+        key_name: "{{ awx }}"
+        group_id: "{{ sg-08ba838d51dcadfc9 }}"
+        instance_type: "{{ t2.small }}"
+        image: "{{ ami-01945499792201081 }}"
+        vpc_subnet_id: "{{ subnet-08f4e1863e7c6d33c }}"
+        region: "{{ us-east-1 }}"
+        instance_tags: '{"Type":"{{name}}", "Role":"{{test}}"}'
+        assign_public_ip: yes
+        wait: true
+        exact_count: "{{ 1 }}"
+        count_tag:
+          Role: "{{ test }}"
+        volumes:
+          - device_name: /dev/xvda
+            volume_type: gp2
+            volume_size: "{{ 10 }}"
+            delete_on_termination: true
+      register: ec2
