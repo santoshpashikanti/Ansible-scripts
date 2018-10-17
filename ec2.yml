@@ -13,7 +13,6 @@
         image: "{{ ami-01945499792201081 }}"
         vpc_subnet_id: "{{ subnet-08f4e1863e7c6d33c }}"
         region: "{{ us-east-1 }}"
-        instance_tags: '{"Type":"{{name}}", "Role":"{{test}}"}'
         assign_public_ip: yes
         wait: true
         exact_count: "{{ 1 }}"
