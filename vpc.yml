@@ -1,4 +1,8 @@
----
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  user: root
+  
 - name: create VPC
   ec2_vpc_net:
     name: "{{ Santosh }}"
