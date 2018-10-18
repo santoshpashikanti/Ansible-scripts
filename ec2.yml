@@ -1,17 +1,15 @@
-- hosts: localhost
-  connection: local
+- hosts: all
   gather_facts: false
-  user: root
   
   tasks:
     - name: Provision {{ 1 }} instances with tag {{ Santosh }}
       local_action:
         module: ec2
-        key_name: "{{ awx }}"
-        group_id: "{{ sg-08ba838d51dcadfc9 }}"
+        key_name: "{{ awxtest }}"
+        group_id: "{{ sg-06b9faa636832f768 }}"
         instance_type: "{{ t2.small }}"
-        image: "{{ ami-01945499792201081 }}"
-        vpc_subnet_id: "{{ subnet-08f4e1863e7c6d33c }}"
+        image: "{{ i-0fd39ab83cf84da48 }}"
+        vpc_subnet_id: "{{ subnet-0b5fe7c228a362a12 }}"
         region: "{{ us-east-1 }}"
         assign_public_ip: yes
         wait: true
