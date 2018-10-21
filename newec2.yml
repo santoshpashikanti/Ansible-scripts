@@ -1,0 +1,23 @@
+- hosts: all
+  gather_facts: false
+  
+  tasks:
+    - name: Provision {{ 1 }} instances with tag {{ Santosh }}
+      local_action:
+        module: ec2
+        key_name: "{{ awxtest }}"
+        group_id: "{{ sg-0c00c800503f25d9c }}"
+        instance_type: "{{ t2.small }}"
+        image: "{{ ami-095b4c583c5831005 }}"
+        vpc_subnet_id: "{{ subnet-0bd0eacffcde78b80 }}"
+        region: "{{ us-east-1 }}"
+        assign_public_ip: yes
+        wait: true
+        exact_count: "{{ 1 }}"
+        count_tag:
+         volumes:
+          - device_name: /dev/sda1
+            volume_type: gp2
+            volume_size: "{{ 30 }}"
+            delete_on_termination: true
+      register: ec2
